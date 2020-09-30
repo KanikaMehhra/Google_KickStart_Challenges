@@ -1,0 +1,8 @@
+Only int type data is provided to the BidirectionalIterators, thus the return type of its next() and previous() is 'int'.
+
+Since the sample input shows that the BidirectionalIterators is an array, thus in the ApplicationClass initiates it as a BidirectionalIterators[] datatype. It could have been improved if the List<> is used to store the bidirectional iterators.
+
+The next() and previous() work in circular manner, however, the hasNext() and hasPrevious() do not. For example, 
+--> the given List is {1,2,3}
+--> calling next() when the index is pointing at element 3, it returns 1. Similarly for previous()
+--> calling hasNext() when the index is pointing at element 3, return flase. Similarly for hasPrevious().
