@@ -13,7 +13,7 @@ public class ApplicationClass {
 		List<Integer> list3 = Arrays.asList(7, 8);
 		List<Integer> list4 = Arrays.asList(9);
 		List<List<Integer>> lists = Arrays.asList(list1, list2, list3, list4);
-
+		Rectangle rect =new Rectangle(lists);
 //		Matrix matrix = new Matrix(lists);
 		
 		

@@ -1,8 +1,6 @@
 package challenge4;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
@@ -16,6 +14,11 @@ public class Matrix {
 		int x = lists.size();
 		int y = lists.stream().map(List::size).max(Comparator.naturalOrder()).get();
 		this.matrix = new CellNode[x][y];
+		this.createMatrix();
+	}
+
+	public CellNode[][] getMatrix() {
+		return this.matrix;
 	}
 
 	private void setUpwardConnection() {
@@ -44,14 +47,13 @@ public class Matrix {
 		return listOfListIterators;
 	}
 
-	public CellNode[][] createMatrix() {
+	public void createMatrix() {
 		this.fillMatrix();
 		this.setRightLeftConnections();
 		this.setUpwardConnection();
-		return this.matrix;
 	}
 
-	private List<CellNode> getNonNullCellNodesList(CellNode[] row) {
+	public List<CellNode> getNonNullCellNodesList(CellNode[] row) {
 		List<CellNode> cellNodesInARow = new ArrayList<>();
 		for (CellNode node : row) {
 			if (node != null) {
