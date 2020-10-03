@@ -17,8 +17,24 @@ public class Matrix {
 		int y = lists.stream().map(List::size).max(Comparator.naturalOrder()).get();
 		this.matrix = new CellNode[x][y];
 	}
-	
-	
+
+	private void setUpwardConnection() {
+		for (int i = 1; i < this.lists.size(); i++) {
+			CellNode[] row = this.matrix[i];
+			List<CellNode> nonNullCellNodeRow = getNonNullCellNodesList(row);
+			ListIterator<CellNode> listItr = nonNullCellNodeRow.listIterator();
+			while (listItr.hasNext()) {
+				int currentColumn = listItr.nextIndex();
+				CellNode upCellNode = this.matrix[i - 1][currentColumn];
+				if (upCellNode != null) {
+					listItr.next().setUpCellNode(upCellNode);
+				} else {
+					break;
+				}
+			}
+		}
+	}
+
 	private List<ListIterator<Integer>> getListOfListIterators() {
 		List<ListIterator<Integer>> listOfListIterators = new ArrayList<ListIterator<Integer>>();
 		for (List<Integer> list : this.lists) {
@@ -31,6 +47,7 @@ public class Matrix {
 	public CellNode[][] createMatrix() {
 		this.fillMatrix();
 		this.setRightLeftConnections();
+		this.setUpwardConnection();
 		return this.matrix;
 	}
 

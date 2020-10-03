@@ -71,5 +71,19 @@ class TestRectangleArea {
 		assertEquals(cellNodes[2][1].getLeftCellNode().getValue(), 7);
 		assertEquals(cellNodes[3][0].getLeftCellNode(), null);
 	}
+	
+	@Test
+	void testUpwardConnections() {
+		cellNodes = matrix.createMatrix();
+		assertEquals(cellNodes[0][0].getUpCellNode(), null);
+		assertEquals(cellNodes[0][1].getUpCellNode(), null);
+		assertEquals(cellNodes[1][0].getUpCellNode().getValue(), 1);
+		assertEquals(cellNodes[1][1].getUpCellNode().getValue(), 2);
+		assertEquals(cellNodes[1][2].getUpCellNode(), null);
+		assertEquals(cellNodes[1][3].getUpCellNode(), null);
+		assertEquals(cellNodes[2][0].getUpCellNode().getValue(), 3);
+		assertEquals(cellNodes[2][1].getUpCellNode().getValue(), 4);
+		assertEquals(cellNodes[3][0].getUpCellNode().getValue(), 7);
+	}
 
 }
