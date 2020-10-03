@@ -3,6 +3,7 @@ package challenge4;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -73,25 +74,30 @@ class TestRectangleArea {
 		Rectangle rect = new Rectangle(lists);
 		assertEquals(rect.getBiggestRectSum(), 25);
 
-		List<Integer> list1 = Arrays.asList(1, 2);
-		List<Integer> list2 = Arrays.asList(3, 4, 5, 6);
-		List<Integer> list3 = Arrays.asList(7, 8, 10);
-		List<Integer> list4 = Arrays.asList(9);
+		List<Integer> list1, list2, list3, list4 = new ArrayList<>();
+		list1 = Arrays.asList(1, 2);
+		list2 = Arrays.asList(3, 4, 5, 6);
+		list3 = Arrays.asList(7, 8, 10);
+		list4 = Arrays.asList(9);
 		lists = Arrays.asList(list1, list2, list3, list4);
-
 		Rectangle rect2 = new Rectangle(lists);
-
 		assertEquals(rect2.getBiggestRectSum(), 37);
 
-		// assertEquals(cellNodes[0][1].getUpCellNode(), null);
-		// assertEquals(cellNodes[1][0].getUpCellNode().getValue(), 1);
-		// assertEquals(cellNodes[1][1].getUpCellNode().getValue(), 2);
-		// assertEquals(cellNodes[1][2].getUpCellNode(), null);
-		// assertEquals(cellNodes[1][3].getUpCellNode(), null);
-		// assertEquals(cellNodes[2][0].getUpCellNode().getValue(), 3);
-		// assertEquals(cellNodes[2][1].getUpCellNode().getValue(), 4);
-		// assertEquals(cellNodes[3][0].getUpCellNode().getValue(), 7);
-		// fail("Test not yet implemented");
+		list1 = Arrays.asList(1, 2);
+		list2 = Arrays.asList(3, 4, 5, 6, 11);
+		list3 = Arrays.asList(7, 8, 10);
+		list4 = Arrays.asList(9);
+		lists = Arrays.asList(list1, list2, list3, list4);
+		Rectangle rect3 = new Rectangle(lists);
+		assertEquals(rect3.getBiggestRectSum(), 37);
+
+		list1 = Arrays.asList(1, 2);
+		list2 = Arrays.asList(3, 4, 5, 6, 11, 12);
+		list3 = Arrays.asList(7, 8, 10);
+		list4 = Arrays.asList(9);
+		lists = Arrays.asList(list1, list2, list3, list4);
+		Rectangle rect4 = new Rectangle(lists);
+		assertEquals(rect4.getBiggestRectSum(), 41);
 	}
 
 }
