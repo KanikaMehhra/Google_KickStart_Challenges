@@ -15,13 +15,11 @@ public class Matrix {
 		this.lists = lists;
 		int x = lists.size();
 		int y = lists.stream().map(List::size).max(Comparator.naturalOrder()).get();
-		// System.out.println(x);
-		// System.out.println(y);
 		this.matrix = new CellNode[x][y];
-		// this.createMatrix();
 	}
-
-	public List<ListIterator<Integer>> getListOfListIterators() {
+	
+	
+	private List<ListIterator<Integer>> getListOfListIterators() {
 		List<ListIterator<Integer>> listOfListIterators = new ArrayList<ListIterator<Integer>>();
 		for (List<Integer> list : this.lists) {
 			ListIterator<Integer> listIterator = list.listIterator();
@@ -31,23 +29,26 @@ public class Matrix {
 	}
 
 	public CellNode[][] createMatrix() {
-		// Fill the matrix
 		this.fillMatrix();
 		this.setRightLeftConnections();
 		return this.matrix;
-
 	}
 
-	public void setRightLeftConnections() {
-		for (CellNode[] row : this.matrix) {
-			List<CellNode> cellNodesInARow = new ArrayList<>();
-			for (CellNode node : row) {
-				if (node != null) {
-					cellNodesInARow.add(node);
-				} else {
-					break;
-				}
+	private List<CellNode> getNonNullCellNodesList(CellNode[] row) {
+		List<CellNode> cellNodesInARow = new ArrayList<>();
+		for (CellNode node : row) {
+			if (node != null) {
+				cellNodesInARow.add(node);
+			} else {
+				break;
 			}
+		}
+		return cellNodesInARow;
+	}
+
+	private void setRightLeftConnections() {
+		for (CellNode[] row : this.matrix) {
+			List<CellNode> cellNodesInARow = this.getNonNullCellNodesList(row);
 			ListIterator<CellNode> cellNodeListItrRow = cellNodesInARow.listIterator();
 			for (int i = 0; i < cellNodesInARow.size(); i++) {
 				if (i != cellNodesInARow.size() - 1) {
@@ -62,7 +63,7 @@ public class Matrix {
 
 	}
 
-	public void fillMatrix() {
+	private void fillMatrix() {
 		List<ListIterator<Integer>> listOfListIterators = this.getListOfListIterators();
 		int x = 0;
 		int y = 0;
