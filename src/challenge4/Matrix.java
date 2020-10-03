@@ -90,7 +90,7 @@ public class Matrix {
 		int y = 0;
 		for (ListIterator<Integer> listIterator : listOfListIterators) {
 			while (listIterator.hasNext()) {
-				this.matrix[x][y] = new CellNode(listIterator.next());
+				this.matrix[x][y] = new CellNode(listIterator.next(), x, y);
 				y++;
 			}
 			x++;
