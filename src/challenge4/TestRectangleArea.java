@@ -5,7 +5,6 @@ import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +21,6 @@ class TestRectangleArea {
 		List<Integer> list3 = Arrays.asList(7, 8);
 		List<Integer> list4 = Arrays.asList(9);
 		lists = Arrays.asList(list1, list2, list3, list4);
-		// cellNodes=matrix.createMatrix();
-		// System.out.println(cellNodes[0][0]);
 	}
 
 	@Test
@@ -39,21 +36,6 @@ class TestRectangleArea {
 		assertEquals(cellNodes[2][0].getValue(), 7);
 		assertEquals(cellNodes[2][1].getValue(), 8);
 		assertEquals(cellNodes[3][0].getValue(), 9);
-	}
-
-	@Test
-	void testRightConnections() {
-		matrix = new Matrix(lists);
-		cellNodes = matrix.getMatrix();
-		assertEquals(cellNodes[0][0].getRightCellNode().getValue(), 2);
-		assertEquals(cellNodes[0][1].getRightCellNode(), null);
-		assertEquals(cellNodes[1][0].getRightCellNode().getValue(), 4);
-		assertEquals(cellNodes[1][1].getRightCellNode().getValue(), 5);
-		assertEquals(cellNodes[1][2].getRightCellNode().getValue(), 6);
-		assertEquals(cellNodes[1][3].getRightCellNode(), null);
-		assertEquals(cellNodes[2][0].getRightCellNode().getValue(), 8);
-		assertEquals(cellNodes[2][1].getRightCellNode(), null);
-		assertEquals(cellNodes[3][0].getRightCellNode(), null);
 	}
 
 	@Test
@@ -88,30 +70,28 @@ class TestRectangleArea {
 
 	@Test
 	void testBiggestRectSum1() {
-		Rectangle rect =new Rectangle(lists);
+		Rectangle rect = new Rectangle(lists);
 		assertEquals(rect.getBiggestRectSum(), 25);
-		
+
 		List<Integer> list1 = Arrays.asList(1, 2);
 		List<Integer> list2 = Arrays.asList(3, 4, 5, 6);
 		List<Integer> list3 = Arrays.asList(7, 8, 10);
 		List<Integer> list4 = Arrays.asList(9);
 		lists = Arrays.asList(list1, list2, list3, list4);
 
-		Rectangle rect2 =new Rectangle(lists);
+		Rectangle rect2 = new Rectangle(lists);
 
 		assertEquals(rect2.getBiggestRectSum(), 37);
 
-//		assertEquals(cellNodes[0][1].getUpCellNode(), null);
-//		assertEquals(cellNodes[1][0].getUpCellNode().getValue(), 1);
-//		assertEquals(cellNodes[1][1].getUpCellNode().getValue(), 2);
-//		assertEquals(cellNodes[1][2].getUpCellNode(), null);
-//		assertEquals(cellNodes[1][3].getUpCellNode(), null);
-//		assertEquals(cellNodes[2][0].getUpCellNode().getValue(), 3);
-//		assertEquals(cellNodes[2][1].getUpCellNode().getValue(), 4);
-//		assertEquals(cellNodes[3][0].getUpCellNode().getValue(), 7);
-//		fail("Test not yet implemented");
+		// assertEquals(cellNodes[0][1].getUpCellNode(), null);
+		// assertEquals(cellNodes[1][0].getUpCellNode().getValue(), 1);
+		// assertEquals(cellNodes[1][1].getUpCellNode().getValue(), 2);
+		// assertEquals(cellNodes[1][2].getUpCellNode(), null);
+		// assertEquals(cellNodes[1][3].getUpCellNode(), null);
+		// assertEquals(cellNodes[2][0].getUpCellNode().getValue(), 3);
+		// assertEquals(cellNodes[2][1].getUpCellNode().getValue(), 4);
+		// assertEquals(cellNodes[3][0].getUpCellNode().getValue(), 7);
+		// fail("Test not yet implemented");
 	}
-	
-	
 
 }

@@ -49,7 +49,7 @@ public class Matrix {
 
 	public void createMatrix() {
 		this.fillMatrix();
-		this.setRightLeftConnections();
+		this.setLeftConnections();
 		this.setUpwardConnection();
 	}
 
@@ -65,18 +65,20 @@ public class Matrix {
 		return cellNodesInARow;
 	}
 
-	private void setRightLeftConnections() {
+	private void setLeftConnections() {
 		for (CellNode[] row : this.matrix) {
 			List<CellNode> cellNodesInARow = this.getNonNullCellNodesList(row);
-			ListIterator<CellNode> cellNodeListItrRow = cellNodesInARow.listIterator();
-			for (int i = 0; i < cellNodesInARow.size(); i++) {
-				if (i != cellNodesInARow.size() - 1) {
-					CellNode leftNode = cellNodeListItrRow.next();
-					CellNode rightNode = cellNodeListItrRow.next();
-					leftNode.setRightCellNode(rightNode);
-					rightNode.setLeftCellNode(leftNode);
-					cellNodeListItrRow.previous();
+			ListIterator<CellNode> cellNodeListItrRow = cellNodesInARow.listIterator(cellNodesInARow.size());
+			while (cellNodeListItrRow.hasPrevious()) {
+				CellNode currentNode = cellNodeListItrRow.previous();
+				if (cellNodeListItrRow.hasPrevious()) {
+					CellNode leftNode = cellNodeListItrRow.previous();
+					currentNode.setLeftCellNode(leftNode);
+					cellNodeListItrRow.next();
+				} else {
+					break;
 				}
+
 			}
 		}
 

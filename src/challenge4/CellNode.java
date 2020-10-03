@@ -5,7 +5,6 @@ public class CellNode {
 	private int intermediateSumValue;
 	private int totalRectValue;
 	private CellNode leftCellNode;
-	private CellNode rightCellNode;
 	private CellNode upCellNode;
 
 	public CellNode(int value) {
@@ -13,7 +12,6 @@ public class CellNode {
 		this.intermediateSumValue = 0;
 		this.totalRectValue = 0;
 		this.leftCellNode = null;
-		this.rightCellNode = null;
 		this.upCellNode = null;
 	}
 
@@ -33,10 +31,6 @@ public class CellNode {
 		return this.leftCellNode;
 	}
 
-	public CellNode getRightCellNode() {
-		return this.rightCellNode;
-	}
-
 	public CellNode getUpCellNode() {
 		return this.upCellNode;
 	}
@@ -51,10 +45,6 @@ public class CellNode {
 
 	public void setLeftCellNode(CellNode leftCellNode) {
 		this.leftCellNode = leftCellNode;
-	}
-
-	public void setRightCellNode(CellNode rightCellNode) {
-		this.rightCellNode = rightCellNode;
 	}
 
 	public void setUpCellNode(CellNode upCellNode) {
