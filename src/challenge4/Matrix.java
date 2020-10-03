@@ -2,6 +2,7 @@ package challenge4;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.ListIterator;
@@ -32,8 +33,32 @@ public class Matrix {
 	public CellNode[][] createMatrix() {
 		// Fill the matrix
 		this.fillMatrix();
-		this.setHorizontalConnections();
+		this.setRightLeftConnections();
 		return this.matrix;
+
+	}
+
+	public void setRightLeftConnections() {
+		for (CellNode[] row : this.matrix) {
+			List<CellNode> cellNodesInARow = new ArrayList<>();
+			for (CellNode node : row) {
+				if (node != null) {
+					cellNodesInARow.add(node);
+				} else {
+					break;
+				}
+			}
+			ListIterator<CellNode> cellNodeListItrRow = cellNodesInARow.listIterator();
+			for (int i = 0; i < cellNodesInARow.size(); i++) {
+				if (i != cellNodesInARow.size() - 1) {
+					CellNode leftNode = cellNodeListItrRow.next();
+					CellNode rightNode = cellNodeListItrRow.next();
+					leftNode.setRightCellNode(rightNode);
+					rightNode.setLeftCellNode(leftNode);
+					cellNodeListItrRow.previous();
+				}
+			}
+		}
 
 	}
 
@@ -51,66 +76,4 @@ public class Matrix {
 		}
 
 	}
-
-	public void setHorizontalConnections() {
-		for (int listIndex = 0; listIndex < this.lists.size(); listIndex++) {
-			for (int j = 0; j < this.lists.get(listIndex).size(); j++) {
-				if (j == this.lists.get(listIndex).size() - 1) {
-					this.matrix[listIndex][j].setLeftCellNode(this.matrix[listIndex][j - 1]);
-				} else {
-					if (j != 0) {
-						this.matrix[listIndex][j].setLeftCellNode(this.matrix[listIndex][j - 1]);
-					}
-
-					this.matrix[listIndex][j].setRightCellNode(this.matrix[listIndex][j + 1]);
-
-				}
-
-			}
-		}
-	}
-
-	/*
-	 * public void createMatrix() { List<ListIterator<Integer>> listOfListIterators
-	 * = this.getListOfListIterators(); int previousX = 0; int previousY = 0;
-	 * this.matrix[previousX][previousY] = new
-	 * CellNode(listOfListIterators.get(0).next()); //
-	 * System.out.println(this.matrix[previousX][previousY].getValue()); for
-	 * (ListIterator<Integer> listIterator : listOfListIterators) { int currentX =
-	 * previousX; while (listIterator.hasNext()) { int currentY = previousY++;
-	 * CellNode cellNode = new CellNode(listIterator.next()); if (previousX == 0 &&
-	 * previousY == 0) {
-	 * this.matrix[previousX][previousY].setRightCellNode(cellNode);
-	 * cellNode.setLeftCellNode(this.matrix[previousX][previousY]);
-	 * this.matrix[currentX][currentY] = cellNode; previousX = currentX; previousY =
-	 * currentY; } else if (previousX == 0) {
-	 * this.matrix[previousX][previousY].setRightCellNode(cellNode);
-	 * cellNode.setLeftCellNode(this.matrix[previousX][previousY]);
-	 * this.matrix[currentX][currentY] = cellNode; previousX = currentX; previousY =
-	 * currentY; } else if (previousY == 0) { this.matrix[currentX][previousY] =
-	 * cellNode; if(listIterator.hasNext()) { CellNode nextCellNode = new
-	 * CellNode(listIterator.next()); cellNode.setRightCellNode(nextCellNode);
-	 * nextCellNode.setLeftCellNode(cellNode);
-	 * cellNode.setUpCellNode(this.matrix[currentX - 1][previousY]);
-	 * this.matrix[currentX][currentY]=nextCellNode;
-	 * nextCellNode.setUpCellNode(this.matrix[currentX-1][currentY]); previousX =
-	 * currentX; previousY = currentY; } } else {
-	 * this.matrix[currentX][currentY]=cellNode;
-	 * cellNode.setLeftCellNode(this.matrix[previousX][previousY]);
-	 * this.matrix[previousX][previousY].setRightCellNode(cellNode);
-	 * cellNode.setUpCellNode(this.matrix[currentX-1][currentY]); //
-	 * this.matrix[previousX][previousY].setUpCellNode(this.matrix[currentX -
-	 * 1][previousY]); if(listIterator.hasNext()) { CellNode nextCellNode = new
-	 * CellNode(listIterator.next());
-	 * this.matrix[currentX][currentY].setRightCellNode(nextCellNode);
-	 * nextCellNode.setLeftCellNode(this.matrix[currentX][currentY]); //
-	 * this.matrix[previousX][previousY].setUpCellNode(this.matrix[currentX -
-	 * 1][previousY]); nextCellNode.setUpCellNode(this.matrix[currentX -
-	 * 1][currentY+1]); this.matrix[currentX][currentY+1]=nextCellNode; previousX =
-	 * currentX; previousY = currentY; }
-	 * 
-	 * } } previousX++; previousY = 0; // System.out.println(listIterator.next()); }
-	 * }
-	 */
-
 }

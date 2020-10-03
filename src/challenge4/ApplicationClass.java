@@ -14,7 +14,9 @@ public class ApplicationClass {
 		List<Integer> list4 = Arrays.asList(9);
 		List<List<Integer>> lists = Arrays.asList(list1, list2, list3, list4);
 
-		Matrix matrix = new Matrix(lists);
+//		Matrix matrix = new Matrix(lists);
+		
+		
 
 		// List<List<Integer>> lists=new ArrayList<List<Integer>>([[1, 2], [3, 4, 5, 6],
 		// [7, 8], [9]]);
